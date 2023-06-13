@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background-color: rgb(120, 135, 245);
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    gap: 10px;
+    max-width: 1050px;
+}
+
+.tools-box {
+    background-color: white;
+    border-radius: 8px;
+    padding: 14px 22px 0;
+    width: 200px;
+}
+
+.tools-box .row {
+    margin-bottom: 20px;
+}
+
+.row .options {
+    list-style: none;
+    margin: 10px 0 0 12px;
+}
+
+.row .options .option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.option span {
+    padding-left: 10px;
+    color: rgb(99, 99, 99);
+}
+
+.option .fill {
+    padding-left: 10px;
+    color: rgb(99, 99, 99);
+}
+
+.option #fill {
+    width: 15px;
+    height: 15px;
+}
+
+.option:is(:hover, .active) img {
+    filter: invert(17%) sepia(90%) saturate(3000%) hue-rotate(900deg) brightness(100%) contrast(100%);
+}
+
+.option:is(:hover, .active) :where(span, label) {
+    color: rgb(98, 151, 251);
+}
+
+#fill:checked~label {
+    color: rgb(98, 151, 251);
+}
+
+.option #slider {
+    width: 100%;
+    height: 5px;
+}
+
+.colors .options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.colors .option {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    border: 1px solid black;
+}
+
+.colors .white {
+    background-color: white;
+}
+
+.colors .black {
+    background-color: black;
+}
+
+.colors .red {
+    background-color: red;
+}
+
+.colors .green {
+    background-color: rgb(21, 185, 21);
+}
+
+.colors .blue {
+    background-color: blue;
+}
+
+.colors .option:is(:hover, .selected) {
+    border: 3px solid rgb(98, 151, 251);
+    height: 14px;
+    width: 14px;
+}
+
+.colors #choose-color {
+    opacity: 0;
+    cursor: pointer;
+}
+
+button {
+    height: 50px;
+    width: 100%;
+    border-radius: 6px;
+}
+
+.clear {
+    background-color: rgb(240, 239, 239);
+    margin-bottom: 10px;
+    color: rgb(120, 118, 118);
+    border: 1px solid rgb(72, 70, 70);
+}
+
+.clear:hover {
+    background-color: white;
+}
+
+.save {
+    background-color: rgb(98, 151, 251);
+    color: white;
+    border: 1px solid rgb(98, 151, 251);
+}
+
+.drawing-board {
+    border-radius: 8px;
+    background-color: white;
+    width: 100%;
+}
+
+.drawing-board canvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
