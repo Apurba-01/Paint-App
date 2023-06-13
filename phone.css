@@ -1,0 +1,39 @@
+.container{
+    flex-direction: column-reverse;
+    width: 100%;
+    height: 100vh;
+    
+}
+
+.tools-box ,.drawing-board{
+    max-height: 50vh;
+    width: 93%;
+    height: 50vh;
+    padding-right: 12px;
+    margin-left:4px ;
+}
+
+.tools-box{
+    width:96% ;
+}
+.tools-box .row{
+    padding: 10px;
+    margin-bottom:0 ;
+}
+
+.drawing-board canvas{
+    height: 100%;
+    width: 100%;
+}
+.tool span{
+    display: none;
+}
+.tools-box{
+    padding: 0 ;
+}
+
+.options{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
