@@ -31,31 +31,31 @@ window.addEventListener("load", () => {
 const drawLine = (e) => {
   ctx.beginPath();
   ctx.moveTo(prevMouseX, prevMouseY);
-  ctx.lineTo(e.offsetX, e.offsetY);
+  ctx.lineTo(e.offsetX || e.touches[0].clientX, e.offsetY || e.touches[0].clientY);
   fillColor.checked ? ctx.fill() : ctx.stroke();
 };
 
 const drawRect = (e) => {
   if (!fillColor.checked) {
     return ctx.strokeRect(
-      e.offsetX,
-      e.offsetY,
-      prevMouseX - e.offsetX,
-      prevMouseY - e.offsetY
+      e.offsetX || e.touches[0].clientX,
+      e.offsetY || e.touches[0].clientY,
+      prevMouseX - (e.offsetX || e.touches[0].clientX) ,
+      prevMouseY - (e.offsetY || e.touches[0].clientY)
     );
   }
   ctx.fillRect(
-    e.offsetX,
-    e.offsetY,
-    prevMouseX - e.offsetX,
-    prevMouseY - e.offsetY
+    e.offsetX || e.touches[0].clientX,
+    e.offsetY || e.touches[0].clientY,
+    prevMouseX - (e.offsetX || e.touches[0].clientX),
+    prevMouseY - (e.offsetY || e.touches[0].clientY)
   );
 };
 
 const drawCircle = (e) => {
   ctx.beginPath();
   let radius = Math.sqrt(
-    Math.pow(prevMouseX - e.offsetX, 2) + Math.pow(prevMouseY - e.offsetY, 2)
+   Math.pow(prevMouseX - (e.offsetX || e.touches[0].clientX), 2) + Math.pow(prevMouseY - (e.offsetY || e.touches[0].clientY), 2)
   );
   ctx.arc(prevMouseX, prevMouseY, radius, 0, 2 * Math.PI);
   fillColor.checked ? ctx.fill() : ctx.stroke();
@@ -64,16 +64,16 @@ const drawCircle = (e) => {
 const drawTriangle = (e) => {
   ctx.beginPath();
   ctx.moveTo(prevMouseX, prevMouseY);
-  ctx.lineTo(e.offsetX, e.offsetY);
-  ctx.lineTo(prevMouseX * 2 - e.offsetX, e.offsetY);
+  ctx.lineTo(e.offsetX || e.touches[0].clientX, e.offsetY || e.touches[0].clientY);
+  ctx.lineTo(prevMouseX * 2 - (e.offsetX || e.touches[0].clientX), (e.offsetY || e.touches[0].clientY));
   ctx.closePath();
   fillColor.checked ? ctx.fill() : ctx.stroke();
 };
 
 const startDraw = (e) => {
   isDrawing = true;
-  prevMouseX = e.offsetX;
-  prevMouseY = e.offsetY;
+  prevMouseX = e.offsetX || e.touches[0].clientX;
+  prevMouseY = e.offsetY || e.touches[0].clientY;
   ctx.beginPath();
   ctx.lineWidth = brushWidth;
   ctx.strokeStyle = selectedColor;
@@ -137,5 +137,8 @@ saveImg.addEventListener("click", () => {
 });
 
 canvas.addEventListener("mousedown", startDraw);
+canvas.addEventListener("touchstart", startDraw);
 canvas.addEventListener("mousemove", drawing);
+canvas.addEventListener("touchmove", drawing);
 canvas.addEventListener("mouseup", () => (isDrawing = false));
+canvas.addEventListener("touchend", () => (isDrawing = false));
